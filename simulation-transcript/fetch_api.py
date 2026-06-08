@@ -8,8 +8,8 @@ import streamlit as st
 # Load environment variables
 load_dotenv()
 
-BASE_URL = os.getenv("BASE_URL")
-SECRET_KEY = os.getenv("SECRET_KEY")
+BASE_URL = st.secrets("BASE_URL")
+SECRET_KEY = st.secrets("SECRET_KEY")
 
 
 def fetch_and_flatten_chat_data(simulation_id):
@@ -18,7 +18,7 @@ def fetch_and_flatten_chat_data(simulation_id):
     url = f"{BASE_URL}/tenants/{simulation_id}/simulation-chats"
 
     headers = {
-        "X-API-KEY": os.getenv("SECRET_KEY")
+        "X-API-KEY": SECRET_KEY
     }
 
     # Fetch API
@@ -84,7 +84,7 @@ def fetch_session_data(simulation_id):
     url = f"{BASE_URL}/tenants/{simulation_id}/simulations"
 
     headers = {
-        "X-API-KEY": os.getenv("SECRET_KEY")
+        "X-API-KEY": SECRET_KEY
     }
 
     # Fetch API
