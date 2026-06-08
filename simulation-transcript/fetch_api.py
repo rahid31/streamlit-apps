@@ -8,8 +8,8 @@ import streamlit as st
 # Load environment variables
 load_dotenv()
 
-BASE_URL = st.secrets("BASE_URL")
-SECRET_KEY = st.secrets("SECRET_KEY")
+BASE_URL = st.secrets["BASE_URL"]
+SECRET_KEY = st.secrets["SECRET_KEY"]
 
 
 def fetch_and_flatten_chat_data(simulation_id):
