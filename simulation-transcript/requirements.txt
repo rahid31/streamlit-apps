@@ -1,0 +1,4 @@
+streamlit == 1.41.1
+streamlit-chat
+python-dotenv == 1.0.0
+inotify
