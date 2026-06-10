@@ -6,9 +6,9 @@ from fetch_api import (
 )
 
 # Avatar/Icon paths
-user_url = "src/image/user-png-icon-user-2-icon-png-file-512x512-pixel-512.png"
-avatar_url = "src/image/nexa_icon_256.png"
-page_icon = "src/image/lx_icon_192.png"
+user_url = "data/image/user-png-icon-user-2-icon-png-file-512x512-pixel-512.png"
+avatar_url = "data/image/nexa_icon_256.png"
+page_icon = "data/image/lx_icon_192.png"
 
 st.set_page_config(
     layout="centered",
