@@ -4,11 +4,14 @@ from fetch_api import (
     fetch_and_flatten_chat_data,
     fetch_session_data
 )
+from pathlib import Path
+from PIL import Image
 
-# Avatar/Icon paths
-user_url = "data/image/user-png-icon-user-2-icon-png-file-512x512-pixel-512.png"
-avatar_url = "data/image/nexa_icon_256.png"
-page_icon = "data/image/lx_icon_192.png"
+BASE_DIR = Path(__file__).resolve().parent
+
+user_url = str(BASE_DIR / "data/image/user-png-icon-user-2-icon-png-file-512x512-pixel-512.png")
+avatar_url = str(BASE_DIR / "data/image/nexa_icon_256.png")
+page_icon = Image.open(BASE_DIR / "data/image/lx_icon_192.png")
 
 st.set_page_config(
     layout="centered",
