@@ -6,7 +6,7 @@ from fetch_api import (
 )
 
 # Avatar/Icon paths
-user_url = "src/image/user-square-1024.webp"
+user_url = "src/image/user-png-icon-user-2-icon-png-file-512x512-pixel-512.png"
 avatar_url = "src/image/nexa_icon_256.png"
 page_icon = "src/image/lx_icon_192.png"
 
