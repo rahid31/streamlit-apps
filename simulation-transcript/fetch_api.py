@@ -12,10 +12,10 @@ BASE_URL = st.secrets["BASE_URL"]
 SECRET_KEY = st.secrets["SECRET_KEY"]
 
 
-def fetch_and_flatten_chat_data(simulation_id):
+def fetch_and_flatten_chat_data(simulation_uuid):
 
     # API config
-    url = f"{BASE_URL}/tenants/{simulation_id}/simulation-chats"
+    url = f"{BASE_URL}/tenants/{simulation_uuid}/simulation-chats"
 
     headers = {
         "X-API-KEY": SECRET_KEY
@@ -79,9 +79,9 @@ def fetch_and_flatten_chat_data(simulation_id):
     )
     return df_final
 
-def fetch_session_data(simulation_id):
+def fetch_session_data(simulation_uuid):
     # API config
-    url = f"{BASE_URL}/tenants/{simulation_id}/simulations"
+    url = f"{BASE_URL}/tenants/{simulation_uuid}/simulations"
 
     headers = {
         "X-API-KEY": SECRET_KEY

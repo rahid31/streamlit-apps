@@ -6,9 +6,9 @@ from fetch_api import (
 )
 
 # Avatar/Icon paths
-user_url = "./image/user-square-1024.webp"
-avatar_url = "./image/nexa_icon_256.png"
-page_icon = "./image/lx_icon_192.png"
+user_url = "src/image/user-square-1024.webp"
+avatar_url = "src/image/nexa_icon_256.png"
+page_icon = "src/image/lx_icon_192.png"
 
 st.set_page_config(
     layout="centered",
@@ -33,23 +33,28 @@ st.markdown(
 )
 
 # Read simulation id from URL
-simulation_id = st.query_params.get("simulation_id")
+simulation_uuid = st.query_params.get("simulation_uuid")
 
 try:
-    simulation_id = int(simulation_id)
-except (TypeError, ValueError):
-    simulation_id = None
+    if '-' in simulation_uuid:
+        fact_id = int(simulation_uuid.split('-')[0])
+    else:
+        fact_id = int(simulation_uuid)
 
-if simulation_id is None:
-    st.error("No simulation_id provided in the URL.")
+    simulation_uuid = int(fact_id)
+except (TypeError, ValueError):
+    simulation_uuid = None
+
+if simulation_uuid is None:
+    st.error("No simulation_uuid provided in the URL.")
     st.stop()
 
 
 @st.cache_data
-def load_chat_data(simulation_id):
+def load_chat_data(simulation_uuid):
 
     try:
-        df = fetch_and_flatten_chat_data(simulation_id)
+        df = fetch_and_flatten_chat_data(simulation_uuid)
 
         if isinstance(df, pd.DataFrame):
             return df
@@ -62,10 +67,10 @@ def load_chat_data(simulation_id):
 
 
 @st.cache_data
-def load_session_data(simulation_id):
+def load_session_data(simulation_uuid):
 
     try:
-        df = fetch_session_data(simulation_id)
+        df = fetch_session_data(simulation_uuid)
 
         if isinstance(df, pd.DataFrame):
             return df
@@ -82,8 +87,8 @@ def convert_df(df):
 
 
 # Load transcript and session details
-df_chat = load_chat_data(simulation_id)
-df_session = load_session_data(simulation_id)
+df_chat = load_chat_data(simulation_uuid)
+df_session = load_session_data(simulation_uuid)
 
 # Transcript data is required for the page to render
 if df_chat.empty:
@@ -158,7 +163,7 @@ csv = convert_df(df_chat)
 st.download_button(
     "Download CSV",
     data=csv,
-    file_name=f"simulation_transcript_{simulation_id}.csv",
+    file_name=f"simulation_transcript_{simulation_uuid}.csv",
     mime="text/csv"
 )
 
